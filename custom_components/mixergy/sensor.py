@@ -2,7 +2,7 @@ import logging
 from datetime import timedelta
 from homeassistant.const import UnitOfPower, UnitOfTemperature, PERCENTAGE, STATE_OFF
 from homeassistant.core import HomeAssistant
-from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
 from homeassistant.components.integration.sensor import IntegrationSensor
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass, BinarySensorEntity
 from .const import DOMAIN
@@ -55,6 +55,8 @@ class BinarySensorBase(MixergyEntityBase, BinarySensorEntity):
 
 class ChargeSensor(SensorBase):
 
+    state_class = SensorStateClass.MEASUREMENT
+
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator, tank)
 
@@ -79,6 +81,8 @@ class ChargeSensor(SensorBase):
           return f"Current Charge"
 
 class TargetChargeSensor(SensorBase):
+
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator, tank)
@@ -106,6 +110,7 @@ class TargetChargeSensor(SensorBase):
 class HotWaterTemperatureSensor(SensorBase):
 
     device_class = SensorDeviceClass.TEMPERATURE
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__( coordinator, tank)
@@ -130,6 +135,7 @@ class HotWaterTemperatureSensor(SensorBase):
 class ColdestWaterTemperatureSensor(SensorBase):
 
     device_class = SensorDeviceClass.TEMPERATURE
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator, tank)
@@ -153,6 +159,7 @@ class ColdestWaterTemperatureSensor(SensorBase):
 class TargetTemperatureSensor(SensorBase):
 
     device_class = SensorDeviceClass.TEMPERATURE
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator, tank)
@@ -305,7 +312,7 @@ class IsChargingSensor(BinarySensorBase):
 class PowerSensor(SensorBase):
 
     device_class = SensorDeviceClass.POWER
-    state_class = "measurement"
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator,tank)
@@ -349,7 +356,7 @@ class EnergySensor(IntegrationSensor):
 class PVPowerSensor(SensorBase):
 
     device_class = SensorDeviceClass.POWER
-    state_class = "measurement"
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator,tank)
@@ -402,7 +409,7 @@ class PVEnergySensor(IntegrationSensor):
 class ClampPowerSensor(SensorBase):
 
     device_class = SensorDeviceClass.POWER
-    state_class = "measurement"
+    state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, tank:Tank):
         super().__init__(coordinator,tank)
