@@ -338,7 +338,7 @@ class EnergySensor(IntegrationSensor):
 
     def __init__(self, hass: HomeAssistant, tank:Tank):
         super().__init__(
-            hass = hass,
+            #hass = hass,
             name="Mixergy Electric Heat Energy",
             source_entity="sensor.mixergy_electric_heat_power",
             round_digits=2,
@@ -386,7 +386,7 @@ class PVEnergySensor(IntegrationSensor):
 
     def __init__(self, hass: HomeAssistant, tank:Tank):
         super().__init__(
-            hass = hass,
+            #hass = hass,
             name="Mixergy Electric PV Energy",
             source_entity="sensor.mixergy_electric_pv_power",
             round_digits=2,
