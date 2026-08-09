@@ -3,6 +3,7 @@ from datetime import timedelta
 import logging
 import asyncio
 import voluptuous as vol
+from homeassistant import config_validation as cv
 from homeassistant import core
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
@@ -17,6 +18,8 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 CHARGE_SERVICE_SCHEMA: Final = make_entity_service_schema(
     {vol.Optional("target_percentage"): cv.positive_int}
 )
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema("mixergy")
 
 DOMAIN = "mixergy"
 PLATFORMS:list[Platform] = [Platform.SENSOR, Platform.SWITCH, Platform.NUMBER]
